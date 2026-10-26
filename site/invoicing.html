@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Invoicing — Alice Brocca</title>
+  <meta name="description" content="Designing an end-to-end catering invoicing tool in Shift4’s back office.">
+  <link rel="preload" href="assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Manrope-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="case-study.css">
+</head>
+<body class="case-page">
+  <header class="site-header">
+    <a class="site-header__id" href="index.html">
+      <span>ALICE BROCCA</span>
+      <span>//</span>
+      <span>UI UX DESIGNER @ SHIFT4</span>
+    </a>
+    <nav class="site-header__nav" aria-label="Contact">
+      <a href="#" target="_blank" rel="noopener">RESUME.PDF →</a>
+      <a href="mailto:alicejbrocca@gmail.com">EMAIL →</a>
+      <a href="#" target="_blank" rel="noopener">LINKEDIN →</a>
+      <a href="#" target="_blank" rel="noopener">FOR FUN →</a>
+    </nav>
+  </header>
+
+  <main class="cs" id="top">
+    <a class="cs-back" href="index.html#work">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.825 13l5.6 5.6L12 20l-8-8 8-8 1.425 1.4-5.6 5.6H20v2H7.825z"/></svg>
+      <span>All Work</span>
+    </a>
+
+    <h1 class="cs-title">// Invoicing</h1>
+
+    <div class="cs-intro">
+      <div class="cs-intro__desc">
+        <h2 class="cs-label">Project Description</h2>
+        <p>This project’s goal was to design an end-to-end catering invoicing tool built into Shift4’s back office tool. It moves restaurants off disconnected systems and manual tracking into one workflow covering the full catering journey, from building an order off the real menu to scheduling deposits, firing the order to the kitchen, and handling payments, voids and refunds.</p>
+      </div>
+      <dl class="cs-meta">
+        <dt>Employer</dt><dd>Shift4</dd>
+        <dt>Date</dt><dd>2026</dd>
+        <dt>Design</dt><dd>Product, UI/UX</dd>
+      </dl>
+    </div>
+
+    <figure class="cs-figure">
+      <img src="assets/images/invoicing/hero.png" width="1320" height="720" alt="Invoicing overview page with invoice stats and how-it-works steps, beside an invoice detail with scheduled payments and order summary">
+    </figure>
+
+    <section class="cs-section">
+      <h2 class="cs-label">Problem</h2>
+      <div class="cs-section__body">
+        <p>Shift4 had no invoicing tool. That became a real gap when restaurants joining through an acquisition relied on invoicing to run their catering and large orders. Without it, they couldn’t migrate to Shift4 without losing a core part of how they got paid.</p>
+        <p>The hardest design problem was money that changes over time. One invoice might take a deposit, collect a second payment, void two trays of wraps, then issue a partial refund. Every state had to make sense to the operator, the customer, and the reporting behind it.</p>
+      </div>
+    </section>
+
+    <figure class="cs-figure">
+      <img src="assets/images/invoicing/image.png" width="1320" height="808" alt="Partially refunded invoice with refund dialog and payment details panel" loading="lazy">
+    </figure>
+
+    <section class="cs-section">
+      <h2 class="cs-label">Research</h2>
+      <div class="cs-section__body">
+        <p>I analyzed the flows of four competitors: Square, Toast, Lightspeed and SpotOn.</p>
+        <p>Square: The fastest invoice creation, with payment schedules, cards on file, share links, and reminders. But a deposit couldn’t be refunded without canceling the whole invoice, and nothing was built for catering. Opportunity: match Square’s speed, and support deposit refunds without forcing a cancellation.</p>
+        <p>Toast: The closest restaurant competitor, with very flexible payment schedules. In our testing, that flexibility created more potential for broken states. Opportunity: keep the flexibility, but make broken states impossible.</p>
+        <p>Lightspeed Retail: Simple and predictable. Only drafts could be deleted, and sent invoices could be edited or canceled until paid. Opportunity: borrow its clear status model and firm rules.</p>
+        <p>SpotOn: Strong defaults, including branding, due dates, and automatic reminders, plus a clean “Add Payment” flow for payments taken outside the invoice. Opportunity: set smart defaults, and make outside payments easy to record.</p>
+        <p>Key insight: Competitors were either flexible but prone to broken states, or safe but rigid. Customers expect every payment for an event to live under one invoice number. On the back end, that meant a parent/child structure, with each payment linked to the parent invoice. Our goal was to keep Toast-level flexibility while making sure a sent invoice could never end up confusing or broken.</p>
+      </div>
+    </section>
+
+    <figure class="cs-figure">
+      <img src="assets/images/invoicing/image-2.png" width="1320" height="808" alt="Refund, void, add items, payment schedule and order summary components" loading="lazy">
+    </figure>
+
+    <section class="cs-section">
+      <h2 class="cs-label">Approach</h2>
+      <div class="cs-section__body">
+        <p>This project was split into two phases. Phase 1 covered the invoicing basics for Customer Hub merchants that did not have Shift 4’s POS Workstation. Phase 1 gave merchants the ability to create, draft, send and search invoices, with tax settings and a stats landing page. Phase 2 took on the catering-specific problems for merchants that do have Shift4’s POS, and my research on competitors shaped how I handled them.</p>
+        <p>The creation flow pairs the form with a live preview of what the customer will receive. Fulfillment timing and kitchen fire time replace a generic due date. Items are built from the POS menu, including modifiers. Payment schedules make deposits easy to set up, and the edit rules are locked in before the invoice is sent.</p>
+        <p>Because sent invoices can’t be edited, every change after sending goes through voids and refunds. I designed five correction flows: item and full voids for unpaid invoices, and item, payment, custom-amount and full refunds for paid ones. They all share one pattern modelled on the POS. The operator gives a reason, picks what to reverse from an itemized list that includes modifiers, and confirms against a running total. Clear rules keep the ledger reconcilable.</p>
+        <p>Every flow was designed for desktop, mobile and the POS web view.</p>
+      </div>
+    </section>
+
+    <figure class="cs-figure">
+      <img src="assets/images/invoicing/ui-shot.png" width="1320" height="856" alt="Invoice details, item list, add invoice form and scheduled payments on mobile, tilted on a blue background" loading="lazy">
+    </figure>
+
+    <section class="cs-section">
+      <h2 class="cs-label">Outcome</h2>
+      <div class="cs-section__body">
+        <p>Invoicing is built directly into the tools restaurants already use, and made specific to catering. That lets the design address each problem identified in the briefs and competitor research:</p>
+        <ul class="bullets">
+          <li>Removes duplicate data entry. Customers and menu items come from the restaurant’s existing databases and sync with the POS, so operators stop rebuilding every order in a separate system.</li>
+          <li>Prevents the broken states seen in competitors. Sent invoices stay locked, and all corrections go through five void and refund flows with clear rules. This avoids the Toast problem where editing a sent invoice left merchants stuck with payments they couldn’t remove.</li>
+          <li>Makes deposits trustworthy for finance. Scheduled payments count as a liability until they’re redeemed, and each deposit links to its redemption through a unique ID. Owners can see outstanding deposits on each invoice instead of reconciling them by hand.</li>
+          <li>Connects invoices to the kitchen. Fulfillment timing, kitchen fire time and full modifier support mean the invoice the customer pays matches the order the kitchen prepares.</li>
+          <li>Keeps training close to zero. Item builders and refund screens mirror the POS patterns staff already use.</li>
+        </ul>
+        <p>The project was cancelled before Phase 2 went into development, so these outcomes were never measured with real merchants. The prototype was ready to test against the KPIs defined up front: task success rate, time on task, and drop-off rate on complex flows like partial deposit refunds.</p>
+      </div>
+    </section>
+
+    <div class="cs-carousel">
+      <div class="cs-carousel__track" id="invoicing-carousel" tabindex="0" aria-label="Invoicing screens">
+        <img src="assets/images/invoicing/carousel-1.png" width="800" height="650" alt="Add invoice form with items, item modifiers and send confirmation" loading="lazy">
+        <img src="assets/images/invoicing/carousel-2.png" width="560" height="650" alt="Invoice list, add invoice and refund screens" loading="lazy">
+      </div>
+      <div class="cs-arrows" data-track="invoicing-carousel">
+        <button type="button" aria-label="Previous image" aria-controls="invoicing-carousel"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 18l-6-6 6-6 1.4 1.4-4.6 4.6 4.6 4.6L14 18z"/></svg></button>
+        <button type="button" aria-label="Next image" aria-controls="invoicing-carousel"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.6 12L8 7.4 9.4 6l6 6-6 6L8 16.6l4.6-4.6z"/></svg></button>
+      </div>
+    </div>
+
+    <nav class="cs-nav" aria-label="Projects">
+      <a href="capital.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.825 13l5.6 5.6L12 20l-8-8 8-8 1.425 1.4-5.6 5.6H20v2H7.825z"/></svg><span>Previous Project</span></a>
+      <a href="journey-builder.html"><span>Next Project</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.175 13H4v-2h12.175l-5.6-5.6L12 4l8 8-8 8-1.425-1.4 5.6-5.6z"/></svg></a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__contact">
+      <p class="site-footer__title">LET’S TALK</p>
+      <a href="mailto:alicejbrocca@gmail.com">ALICEJBROCCA@GMAIL.COM</a>
+    </div>
+    <p class="site-footer__copy">©2026</p>
+    <div class="site-footer__top">
+      <a href="#top" class="to-top" aria-label="Back to top">
+        <img src="assets/icons/arrow-up.svg" width="76" height="77" alt="">
+      </a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

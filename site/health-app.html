@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Restaurant Health App — Alice Brocca</title>
+  <meta name="description" content="Redesigning Shift4’s InCharge app around a Restaurant Health Score.">
+  <link rel="preload" href="assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Manrope-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="case-study.css">
+</head>
+<body class="case-page">
+  <header class="site-header">
+    <a class="site-header__id" href="index.html">
+      <span>ALICE BROCCA</span>
+      <span>//</span>
+      <span>UI UX DESIGNER @ SHIFT4</span>
+    </a>
+    <nav class="site-header__nav" aria-label="Contact">
+      <a href="#" target="_blank" rel="noopener">RESUME.PDF →</a>
+      <a href="mailto:alicejbrocca@gmail.com">EMAIL →</a>
+      <a href="#" target="_blank" rel="noopener">LINKEDIN →</a>
+      <a href="#" target="_blank" rel="noopener">FOR FUN →</a>
+    </nav>
+  </header>
+
+  <main class="cs" id="top">
+    <a class="cs-back" href="index.html#work">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.825 13l5.6 5.6L12 20l-8-8 8-8 1.425 1.4-5.6 5.6H20v2H7.825z"/></svg>
+      <span>All Work</span>
+    </a>
+
+    <h1 class="cs-title">// Restaurant Health App</h1>
+
+    <div class="cs-intro">
+      <div class="cs-intro__desc">
+        <h2 class="cs-label">Project Description</h2>
+        <p>This project’s goal was to redesign the app around an intelligence feature, the Restaurant Health Score, that is integrated into Shift4’s InCharge mobile app, transforming it from a purely analytics dashboard into a source of actionable, perspective insights for restaurant operators.</p>
+      </div>
+      <dl class="cs-meta">
+        <dt>Employer</dt><dd>Shift4 Design Sprint</dd>
+        <dt>Date</dt><dd>2026</dd>
+        <dt>Design</dt><dd>Product, UI/UX, Concept</dd>
+      </dl>
+    </div>
+
+    <figure class="cs-figure">
+      <img src="assets/images/health-app/hero.png" width="1320" height="720" alt="InCharge home screen with a Health Score of 63, beside the score history chart and performance feed">
+    </figure>
+
+    <section class="cs-section">
+      <h2 class="cs-label">Problem</h2>
+      <div class="cs-section__body">
+        <p>InCharge gave restaurant operators plenty of data — sales, labor, tickets, discounts — but it was purely descriptive. Managers still had to interpret dozens of individual reports themselves to understand how their business was actually doing, with no single source of truth and no guidance on what to do next. Shift4 needed a way to turn InCharge from a dashboard operators checked out of obligation into a tool they’d actually rely on and talk about.</p>
+      </div>
+    </section>
+
+    <figure class="cs-figure">
+      <img src="assets/images/health-app/image-1.png" width="1319" height="858" alt="Priority Actions feed with high-priority suggestion cards from Luna" loading="lazy">
+    </figure>
+
+    <section class="cs-section">
+      <h2 class="cs-label">Research + Validation</h2>
+      <div class="cs-section__body">
+        <p>We ran a competitor analysis across two categories: restaurant management tools (ToastNow, 7Shifts, PeciTaste, SmartQuote, BevSpot) to see how the category approached KPIs and automation, and consumer apps like Strava that had already solved the problem of compressing complex performance data into a single, trusted score.</p>
+        <p>We paired that with direct client interviews — including Lone Star and Bar Burrito — and surveys to pressure-test the concept with real operators. This research shaped three things: which metrics actually mattered enough to weight into a health score, distinct user personas (Quick Service vs. Full Service, single-location vs. enterprise), and how operators wanted to set and track goals for their business.</p>
+      </div>
+    </section>
+
+    <figure class="cs-figure">
+      <img src="assets/images/health-app/image-2.png" width="1320" height="858" alt="Metrics screens for performance, staff and inventory" loading="lazy">
+    </figure>
+
+    <section class="cs-section">
+      <h2 class="cs-label">Approach</h2>
+      <div class="cs-section__body">
+        <p>At the core of the redesign is the Health Score itself: a weighted aggregate of KPIs pulled from Shift4’s POS, business management platform, and InCharge APIs. Rather than a fixed formula, we designed it as a starting algorithm that could be refined over time with expert and operator input — giving Shift4 room to improve accuracy without needing a full model, and giving operators the sense that the score reflects their business, not a generic average.</p>
+        <p class="tight">We built the rest of the app around that score:</p>
+        <ul class="bullets">
+          <li>Home surfaces the score at a glance against an industry benchmark, with a KPI breakdown and metrics snapshot underneath.</li>
+          <li>Luna, an AI assistant, turns the score into action — a priority actions feed that flags what’s worth attention (an upcoming demand spike, a dip in loyalty engagement) instead of leaving operators to dig for it.</li>
+          <li>Metrics gives operators a place to go deeper, organized by Sales, Staff, Orders, Inventory, Operations, and Customers, each with its own KPIs and trends.</li>
+        </ul>
+      </div>
+    </section>
+
+    <figure class="cs-figure">
+      <img src="assets/images/health-app/image-3.png" width="1320" height="858" alt="Lock-screen notifications from InCharge beside the Ask Luna chat charting top-selling items" loading="lazy">
+    </figure>
+
+    <section class="cs-section">
+      <h2 class="cs-label">Proposed Roadmap</h2>
+      <div class="cs-section__body">
+        <p>We delivered this as a phased roadmap, not a single release: starting with an MVP centred on the score and basic goal-setting, expanding into deeper POS integration with food waste tracking, payroll, and industry benchmarking, and eventually reaching predictive analytics and conversational, AI-driven recommendations through Luna.</p>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--close">
+      <h2 class="cs-label">Outcome</h2>
+      <div class="cs-section__body">
+        <p>The result was a fully redesigned InCharge experience — moving the app from a passive analytics tool to a source of proactive, prescriptive insight. The broader goal was to give InCharge a genuine unique selling proposition: a feature distinctive enough to drive engagement and word-of-mouth adoption on its own, positioning the redesign as a foundation Shift4 could build toward over multiple phases rather than a one-time feature launch.</p>
+      </div>
+    </section>
+
+    <div class="cs-carousel cs-carousel--629">
+      <div class="cs-carousel__track" id="health-carousel" tabindex="0" aria-label="Restaurant Health App screens">
+        <img src="assets/images/health-app/carousel-1.png" width="800" height="629" alt="Lock screen notifications and home-screen widgets showing the Health Score" loading="lazy">
+        <img src="assets/images/health-app/carousel-2.png" width="800" height="629" alt="Profitability, sales and operations metrics screens" loading="lazy">
+        <img src="assets/images/health-app/carousel-3.png" width="800" height="629" alt="Additional Restaurant Health App screens" loading="lazy">
+      </div>
+      <div class="cs-arrows" data-track="health-carousel">
+        <button type="button" aria-label="Previous image" aria-controls="health-carousel"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 18l-6-6 6-6 1.4 1.4-4.6 4.6 4.6 4.6L14 18z"/></svg></button>
+        <button type="button" aria-label="Next image" aria-controls="health-carousel"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.6 12L8 7.4 9.4 6l6 6-6 6L8 16.6l4.6-4.6z"/></svg></button>
+      </div>
+    </div>
+
+    <section class="cs-section">
+      <h2 class="cs-label">Shift4</h2>
+      <div class="cs-section__body">
+        <p>This project was completed as part of my employment at Shift4. I would like to acknowledge the expertise and collaborative support of Sara Shafiyan, the senior designer on this project, as well as Michael Dougall, the developer that worked out the back-end logistics. Our collective effort secured second place in this design sprint.</p>
+      </div>
+    </section>
+
+    <nav class="cs-nav" aria-label="Projects">
+      <a href="journey-builder.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.825 13l5.6 5.6L12 20l-8-8 8-8 1.425 1.4-5.6 5.6H20v2H7.825z"/></svg><span>Previous Project</span></a>
+      <a href="capital.html"><span>Next Project</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.175 13H4v-2h12.175l-5.6-5.6L12 4l8 8-8 8-1.425-1.4 5.6-5.6z"/></svg></a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__contact">
+      <p class="site-footer__title">LET’S TALK</p>
+      <a href="mailto:alicejbrocca@gmail.com">ALICEJBROCCA@GMAIL.COM</a>
+    </div>
+    <p class="site-footer__copy">©2026</p>
+    <div class="site-footer__top">
+      <a href="#top" class="to-top" aria-label="Back to top">
+        <img src="assets/icons/arrow-up.svg" width="76" height="77" alt="">
+      </a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

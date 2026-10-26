@@ -1,0 +1,327 @@
+/* Case-study pages. Loaded after styles.css, which supplies the header, footer and tokens. */
+
+.case-page {
+  /* How far a bleeding slider reaches past the content edge to the window edge */
+  --bleed: max(var(--pad), calc((100vw - var(--max)) / 2 + var(--pad)));
+  overflow-x: clip;
+}
+
+.case-page .site-header { position: absolute; }
+
+.cs {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 160px var(--pad) 100px;
+  color: var(--black);
+  font-family: var(--manrope);
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.cs p + p { margin-top: 22px; }
+
+.cs ul.bullets {
+  list-style: disc;
+  padding-left: 24px;
+}
+
+.cs ul.bullets li::marker { font-size: 0.8em; }
+
+.cs p + ul.bullets,
+.cs ul.bullets + p { margin-top: 22px; }
+
+.cs p.tight + ul.bullets { margin-top: 0; }
+
+.cs-label {
+  font-family: var(--manrope);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.cs-label a {
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  text-underline-position: from-font;
+}
+
+.cs-label small {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Back link + title */
+
+.cs-back,
+.cs-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.cs-back svg,
+.cs-nav svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
+.cs-back:hover span,
+.cs-nav a:hover span { text-decoration: underline; text-underline-position: from-font; }
+
+.cs-title {
+  max-width: 700px;
+  margin-top: 53px;
+  font-family: var(--manrope);
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 70px;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+/* Project description + meta */
+
+.cs-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px 60px;
+  margin-top: 100px;
+}
+
+.cs-intro__desc { max-width: 420px; }
+
+.cs-intro__desc .cs-label { margin-bottom: 40px; }
+
+.cs-meta {
+  width: 425px;
+  margin: 0 0 25px;
+  display: grid;
+  grid-template-columns: auto auto;
+  row-gap: 9px;
+}
+
+.cs-meta dt { font-weight: 600; }
+.cs-meta dd { margin: 0; text-align: right; }
+
+/* Full-width images */
+
+.cs-figure {
+  margin: 112px 0 0;
+}
+
+.cs-intro + .cs-figure { margin-top: 100px; }
+
+.cs-figure img {
+  width: 100%;
+  height: auto;
+}
+
+/* Two-column text sections */
+
+.cs-section {
+  display: grid;
+  grid-template-columns: 51.75% 1fr;
+  margin-top: 112px;
+}
+
+.cs-section__body { min-width: 0; }
+
+/* Numbered approach steps (Capital) */
+
+.cs-steps {
+  margin-top: 48px;
+  border-top: 1px solid #a3a3a3;
+}
+
+.cs-steps li {
+  padding: 32px 32px;
+  border-bottom: 1px solid #a3a3a3;
+}
+
+.cs-steps h3 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 24px;
+}
+
+.cs-steps p { max-width: 572px; }
+
+/* Partner flow breakdown: one wide image that scrolls sideways */
+
+.cs-breakdown__head {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  align-self: start;
+}
+
+.cs-breakdown__head .cs-label { font-size: 18px; }
+
+.cs-arrows {
+  display: flex;
+  gap: 16px;
+}
+
+.cs-arrows button {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.cs-arrows button:disabled { opacity: 0.3; cursor: default; }
+
+.cs-arrows button:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
+
+.cs-arrows svg { width: 24px; height: 24px; }
+
+.cs-breakdown__track {
+  margin-left: -14px;
+  margin-right: calc(-1 * var(--bleed));
+  overflow-x: auto;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.cs-breakdown__track::-webkit-scrollbar { display: none; }
+
+.cs-breakdown__track img {
+  width: auto;
+  max-width: none;
+  height: 816px;
+  padding-right: var(--bleed);
+  box-sizing: content-box;
+}
+
+/* Image carousel */
+
+.cs-carousel { margin-top: 112px; }
+
+.cs-carousel__track {
+  display: flex;
+  gap: 20px;
+  margin-right: calc(-1 * var(--bleed));
+  padding-right: var(--bleed);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 0;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.cs-carousel__track::-webkit-scrollbar { display: none; }
+
+.cs-carousel__track img {
+  flex: none;
+  width: auto;
+  height: 650px;
+  max-width: none;
+  scroll-snap-align: start;
+}
+
+.cs-carousel--629 .cs-carousel__track img { height: 629px; }
+
+.cs-carousel .cs-arrows { margin-top: 24px; margin-left: 0; }
+
+/* Previous / next project */
+
+.cs-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 112px;
+}
+
+.cs-nav a {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1100px) {
+  .cs-title { font-size: 48px; line-height: 58px; }
+
+  .cs-section { grid-template-columns: 40% 1fr; }
+
+  .cs-breakdown__track img { height: 680px; }
+
+  .cs-carousel__track img,
+  .cs-carousel--629 .cs-carousel__track img { height: 520px; }
+}
+
+@media (max-width: 900px) {
+  .cs { padding-top: 120px; }
+
+  .cs-intro {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cs-intro__desc { max-width: 560px; }
+
+  .cs-meta { width: 100%; max-width: 560px; margin-bottom: 0; }
+
+  .cs-section {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+    margin-top: 80px;
+  }
+
+  .cs-figure,
+  .cs-carousel { margin-top: 80px; }
+
+  .cs-intro + .cs-figure { margin-top: 64px; }
+
+  .cs-breakdown__track { margin-left: 0; }
+
+  .cs-steps li { padding: 28px 0; }
+
+  .cs-nav { margin-top: 80px; }
+}
+
+@media (max-width: 600px) {
+  .cs { padding-top: 112px; padding-bottom: 64px; }
+
+  .cs-title {
+    margin-top: 40px;
+    font-size: 34px;
+    line-height: 40px;
+  }
+
+  .cs-intro { margin-top: 56px; }
+
+  .cs-intro__desc .cs-label { margin-bottom: 20px; }
+
+  .cs-section,
+  .cs-figure,
+  .cs-carousel { margin-top: 64px; }
+
+  .cs-breakdown__head { justify-content: space-between; }
+  .cs-breakdown__head .cs-label { font-size: 16px; }
+
+  .cs-breakdown__track img { height: 520px; }
+
+  .cs-carousel__track { gap: 12px; }
+
+  .cs-carousel__track img,
+  .cs-carousel--629 .cs-carousel__track img {
+    width: 82vw;
+    height: auto;
+  }
+
+  .cs-nav { margin-top: 64px; }
+}
