@@ -39,12 +39,7 @@
   line-height: 22px;
 }
 
-.cs-label a {
-  text-transform: uppercase;
-  text-decoration: underline;
-  text-decoration-thickness: from-font;
-  text-underline-position: from-font;
-}
+.cs-label a { text-transform: uppercase; }
 
 .cs-label small {
   display: block;
@@ -70,9 +65,6 @@
   height: 20px;
   flex: none;
 }
-
-.cs-back:hover span,
-.cs-nav a:hover span { text-decoration: underline; text-underline-position: from-font; }
 
 .cs-title {
   max-width: 700px;
@@ -211,6 +203,7 @@
 .cs-carousel { margin-top: 112px; }
 
 .cs-carousel__track {
+  position: relative; /* slide offsets are measured from the track (looping in main.js) */
   display: flex;
   gap: 20px;
   margin-right: calc(-1 * var(--bleed));
@@ -324,4 +317,79 @@
   }
 
   .cs-nav { margin-top: 64px; }
+}
+
+/* ---------- Full-screen image viewer (main.js) ---------- */
+
+/* On mouse devices the custom cursor reads "Zoom In" over these images (main.js).
+   The Capital flow breakdown is left out: it already scrolls sideways in place. */
+
+.cs-figure img:focus-visible,
+.cs-carousel__track img:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 4px;
+}
+
+/* Sits below the custom cursor (z-index 1000) so the dot stays visible. */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: #080808;
+  overflow: hidden;
+  touch-action: none; /* finger drags pan the image instead of scrolling the page */
+  user-select: none;
+  -webkit-user-select: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s, visibility 0s 0.25s;
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s;
+}
+
+/* Sized to cover the screen and moved (dragged) by main.js via transform */
+.lightbox__img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: none;
+  -webkit-user-drag: none;
+  will-change: transform;
+}
+
+.lightbox__close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  /* The image can now run under the button, so give it its own dark backing */
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.lightbox__close:hover { background: var(--white); color: var(--black); }
+
+.lightbox__close:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+
+.lightbox__close svg { width: 20px; height: 20px; }
+
+@media (max-width: 600px) {
+  .lightbox__close { top: 12px; right: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox { transition: none; }
 }

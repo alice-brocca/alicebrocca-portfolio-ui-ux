@@ -52,6 +52,53 @@ a:focus-visible {
   outline-offset: 4px;
 }
 
+/* Text links: no underline at rest. On hover a line draws in from the left
+   across the whole link (icons and arrows included), and on leaving it
+   carries on out to the right. Drawn as a background so it can animate. */
+.site-header a,
+.about__text a,
+.site-footer__contact a,
+.cs-back,
+.cs-nav a,
+.cs-label a {
+  --line: max(1px, 0.06em);
+  text-decoration: none;
+  padding-bottom: 0.15em;
+  background: linear-gradient(currentColor, currentColor) no-repeat right bottom / 0 var(--line);
+  transition: background-size 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (hover: hover) {
+  .site-header a:hover,
+  .about__text a:hover,
+  .site-footer__contact a:hover,
+  .cs-back:hover,
+  .cs-nav a:hover,
+  .cs-label a:hover {
+    background-position: left bottom;
+    background-size: 100% var(--line);
+  }
+}
+
+.site-header a:focus-visible,
+.about__text a:focus-visible,
+.site-footer__contact a:focus-visible,
+.cs-back:focus-visible,
+.cs-nav a:focus-visible,
+.cs-label a:focus-visible {
+  background-position: left bottom;
+  background-size: 100% var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header a,
+  .about__text a,
+  .site-footer__contact a,
+  .cs-back,
+  .cs-nav a,
+  .cs-label a { transition: none; }
+}
+
 /* ---------- Header ---------- */
 
 .site-header {
@@ -85,12 +132,6 @@ a:focus-visible {
   display: flex;
   justify-content: flex-end;
   gap: 32px;
-}
-
-.site-header__nav a {
-  text-decoration: underline;
-  text-decoration-thickness: from-font;
-  text-underline-position: from-font;
 }
 
 /* ---------- Hero ---------- */
@@ -160,18 +201,34 @@ a:focus-visible {
 
 .label {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 24px;
   text-transform: uppercase;
   color: var(--ink);
 }
 
-.about,
+.about__pin,
 .skills,
 .work {
   display: flex;
   flex-direction: column;
   gap: 38px;
+}
+
+/* Scroll reveal (class added by main.js): the section grows by the scroll
+   distance and the text block sticks, vertically centred, until every word
+   has reached full opacity. */
+.about.is-reveal .about__pin {
+  position: sticky;
+  top: var(--pin-top, 0px);
+}
+
+.about.is-reveal .reveal-word {
+  opacity: 0.2;
+  /* background-size keeps the "I paint" link's hover underline animating */
+  transition:
+    opacity 0.15s linear,
+    background-size 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .about__text {
@@ -183,12 +240,12 @@ a:focus-visible {
   gap: 1.21em;
 }
 
-.about__lead { font-weight: 600; }
-
-.about__text a {
-  text-decoration: underline;
-  text-decoration-thickness: from-font;
-  text-underline-position: from-font;
+/* 48px over 58px at desktop; in em so it scales with the breakpoints below */
+.about__lead {
+  max-width: 17.3em; /* wraps after "based", as in the design */
+  font-weight: 600;
+  font-size: 1.3333em;
+  line-height: 1.2083;
 }
 
 /* What I do */
@@ -209,8 +266,13 @@ a:focus-visible {
   border-bottom: 1px solid var(--ink);
 }
 
+.skill__num {
+  margin-bottom: 26px; /* 50px to the title with the 24px gap */
+  font-size: 14px;
+}
+
 .skill__title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -288,7 +350,7 @@ a:focus-visible {
 }
 
 @media (hover: hover) {
-  .project:hover .project__image img { transform: scale(1.02); }
+  .project:hover .project__image img { transform: scale(1.08); }
 }
 
 /* ---------- Footer ---------- */
@@ -318,12 +380,7 @@ a:focus-visible {
   line-height: 27px;
 }
 
-.site-footer__contact a {
-  text-transform: uppercase;
-  text-decoration: underline;
-  text-decoration-thickness: from-font;
-  text-underline-position: from-font;
-}
+.site-footer__contact a { text-transform: uppercase; }
 
 .site-footer__copy { text-align: center; }
 
@@ -345,6 +402,75 @@ a:focus-visible {
 .to-top img {
   width: 76px;
   height: 77px;
+}
+
+/* ---------- Custom cursor ---------- */
+/* A small dot follows the mouse (added by main.js on mouse/trackpad devices
+   only). It inverts what's under it so it shows on light and dark areas;
+   over a project it grows into a solid black "View Work" badge. */
+
+@media (hover: hover) and (pointer: fine) {
+  html.has-cursor,
+  html.has-cursor * { cursor: none !important; }
+}
+
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: difference;
+  transition: opacity 0.2s;
+  will-change: transform;
+}
+
+.cursor.is-visible { opacity: 1; }
+
+.cursor__dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--black);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    height 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    background-color 0.25s,
+    color 0.25s;
+}
+
+.cursor__label {
+  font-family: var(--inter);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+/* Over a project: solid black "View Work" */
+.cursor.is-view { mix-blend-mode: normal; }
+
+.cursor.is-view .cursor__dot {
+  width: 112px;
+  height: 112px;
+  background: var(--black);
+  color: var(--white);
+}
+
+/* Wait for the circle to grow before the words appear; hide them at once on the way out */
+.cursor.is-view .cursor__label {
+  opacity: 1;
+  transition-delay: 0.15s;
 }
 
 /* ---------- Responsive ---------- */
