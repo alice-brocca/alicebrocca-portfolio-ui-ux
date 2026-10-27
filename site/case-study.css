@@ -74,6 +74,8 @@
   font-size: 56px;
   line-height: 70px;
   letter-spacing: -0.04em;
+  /* The tight tracking also shrinks Manrope's narrow space; open it back up so words read apart */
+  word-spacing: 0.12em;
   text-transform: uppercase;
 }
 
