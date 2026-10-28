@@ -456,32 +456,33 @@ a:focus-visible {
 }
 
 .cursor__label {
-  font-family: var(--inter);
+  font-family: var(--manrope);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1;
+  text-transform: uppercase;
   white-space: nowrap;
   opacity: 0;
   transition: opacity 0.2s;
 }
 
-/* Over a project: solid black "View Work" */
+/* Over a project, image or the footer email: a solid black circle with one word */
 .cursor.is-view { mix-blend-mode: normal; }
 
 .cursor.is-view .cursor__dot {
-  width: 112px;
-  height: 112px;
+  width: 80px;
+  height: 80px;
   background: var(--black);
   color: var(--white);
 }
 
-/* Wait for the circle to grow before the words appear; hide them at once on the way out */
 /* Over the black footer the circle turns white so it stays visible */
 .cursor.is-view.is-light .cursor__dot {
   background: var(--white);
   color: var(--black);
 }
 
+/* Wait for the circle to grow before the word appears; hide it at once on the way out */
 .cursor.is-view .cursor__label {
   opacity: 1;
   transition-delay: 0.15s;

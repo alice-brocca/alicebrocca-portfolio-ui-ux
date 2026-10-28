@@ -159,7 +159,7 @@
 })();
 
 // Custom cursor: a small dot that follows the mouse. It grows into a labelled
-// circle: "View Work" over the Selected Work projects, "Zoom In" over
+// circle: "View" over the Selected Work projects, "Zoom" over
 // case-study images, "Drag" on an enlarged image. Mouse/trackpad devices only.
 (() => {
   if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -170,7 +170,7 @@
   cursor.setAttribute('aria-hidden', 'true');
   cursor.innerHTML =
     '<div class="cursor__dot">' +
-      '<span class="cursor__label">View Work</span>' +
+      '<span class="cursor__label">View</span>' +
     '</div>';
   document.body.appendChild(cursor);
   document.documentElement.classList.add('has-cursor');
@@ -191,7 +191,7 @@
   const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
 
   // Set the state from whatever is under the pointer.
-  // Projects say "View Work"; case-study images (which open full screen) say "Zoom In".
+  // Projects say "View"; case-study images (which open full screen) say "Zoom".
   // In the enlarged-image viewer it says "Drag" (everywhere but the ✕ button,
   // since while dragging the events come from the viewer, not the picture).
   // The footer email address says "Copy", then "Copied" once clicked.
@@ -205,8 +205,8 @@
     cursor.classList.toggle('is-view', project || zoom || drag || !!copy);
     cursor.classList.toggle('is-light', !!copy);
     // Keep the last words while shrinking so they fade out rather than swap
-    if (project) label.textContent = 'View Work';
-    else if (zoom) label.textContent = 'Zoom In';
+    if (project) label.textContent = 'View';
+    else if (zoom) label.textContent = 'Zoom';
     else if (drag) label.textContent = 'Drag';
     else if (copy) label.textContent = copy.classList.contains('is-copied') ? 'Copied' : 'Copy';
   };
