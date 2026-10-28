@@ -187,23 +187,24 @@
   const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
 
   // Set the state from whatever is under the pointer.
-  // Projects say "View"; case-study images (which open full screen) say "Zoom".
-  // In the enlarged-image viewer it says "Drag" (everywhere but the ✕ button,
-  // since while dragging the events come from the viewer, not the picture).
+  // Projects say "View"; case-study images (which open full screen) say "Click",
+  // or "Click/Drag" in a carousel, stacked on two lines to fit the circle.
+  // While a carousel is being dragged it says "Drag"; in the enlarged-image
+  // viewer it stays a plain dot.
   // The footer email address says "Copy", then "Copied" once clicked.
   const ZOOMABLE = '.cs-figure img, .cs-carousel__track img';
   const update = target => {
     const el = target instanceof Element ? target : null;
     const project = !!(el && el.closest('.project'));
     const zoom = !project && !!(el && el.closest(ZOOMABLE));
-    const drag = !!(el && el.closest('.lightbox.is-open') && !el.closest('.lightbox__close'));
+    const drag = !!(el && el.closest('.cs-carousel__track.is-dragging'));
     const copy = el && el.closest('.copy-email');
     cursor.classList.toggle('is-view', project || zoom || drag || !!copy);
     cursor.classList.toggle('is-light', !!copy);
     // Keep the last words while shrinking so they fade out rather than swap
     if (project) label.textContent = 'View';
-    else if (zoom) label.textContent = 'Zoom';
     else if (drag) label.textContent = 'Drag';
+    else if (zoom) label.textContent = el.closest('.cs-carousel__track') ? 'Click/\nDrag' : 'Click';
     else if (copy) label.textContent = copy.classList.contains('is-copied') ? 'Copied' : 'Copy';
   };
   document.addEventListener('email-copied', e => { if (e.target.matches(':hover')) update(e.target); });
@@ -306,6 +307,64 @@ document.querySelectorAll('.cs-carousel__track').forEach(track => {
   }, { passive: true });
   addEventListener('resize', show);
   show();
+});
+
+// Mouse users can also click and drag a carousel sideways (touch already swipes).
+// Snapping is paused while dragging; on release the track glides on to the next
+// slide edge in the direction of the drag. A drag never counts as a click, so it
+// doesn't open the image viewer. Moves are applied as deltas, so the loop's
+// invisible jump between copies mid-drag goes unnoticed.
+document.querySelectorAll('.cs-carousel__track').forEach(track => {
+  const behavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  let startX = 0, lastX = 0, down = false, moved = false, justDragged = false, settle = null;
+
+  track.addEventListener('dragstart', e => e.preventDefault());
+
+  track.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    down = true;
+    moved = false;
+    startX = lastX = e.clientX;
+  });
+
+  track.addEventListener('pointermove', e => {
+    if (!down) return;
+    if (!moved) {
+      if (Math.abs(e.clientX - startX) < 5) return; // a small wobble is still a click
+      moved = true;
+      clearTimeout(settle);
+      track.setPointerCapture(e.pointerId);
+      track.classList.add('is-dragging');
+    }
+    track.scrollLeft -= e.clientX - lastX;
+    lastX = e.clientX;
+  });
+
+  const release = e => {
+    if (!down) return;
+    down = false;
+    if (!moved) return;
+    justDragged = true;
+    setTimeout(() => { justDragged = false; });
+
+    const x = track.scrollLeft;
+    const slides = [...track.children];
+    const target = e.clientX < startX
+      ? slides.find(s => s.offsetLeft > x + 2)
+      : slides.reverse().find(s => s.offsetLeft < x - 2);
+    if (target) track.scrollTo({ left: target.offsetLeft, behavior });
+
+    // Turn snapping back on only once the glide has finished, or it would cut it short.
+    const done = () => { clearTimeout(settle); track.classList.remove('is-dragging'); };
+    track.addEventListener('scrollend', done, { once: true });
+    settle = setTimeout(done, 700);
+  };
+  track.addEventListener('pointerup', release);
+  track.addEventListener('pointercancel', release);
+
+  track.addEventListener('click', e => {
+    if (justDragged) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
 });
 
 // Case-study sliders: the ‹ › buttons scroll the track they point at (aria-controls).

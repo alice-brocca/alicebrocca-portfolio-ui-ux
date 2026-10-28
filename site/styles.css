@@ -475,9 +475,10 @@ a:focus-visible {
   font-family: var(--manrope);
   font-size: 14px;
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.2;
+  text-align: center;
   text-transform: uppercase;
-  white-space: nowrap;
+  white-space: pre; /* keeps "Click/Drag" on its two lines */
   opacity: 0;
   transition: opacity 0.2s;
 }

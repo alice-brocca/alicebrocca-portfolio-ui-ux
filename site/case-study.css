@@ -215,6 +215,13 @@
 
 .cs-carousel__track::-webkit-scrollbar { display: none; }
 
+/* While dragged with the mouse (main.js): no snapping until the glide finishes */
+.cs-carousel__track.is-dragging {
+  scroll-snap-type: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 .cs-carousel__track img {
   flex: none;
   width: auto;
