@@ -111,7 +111,7 @@ a:focus-visible {
   gap: 16px 32px;
   /* A solid bar across the full width; content scrolls out of sight beneath it.
      The side padding lines the text up with the 1440px content column. */
-  padding: 40px max(var(--pad), calc((100% - var(--max)) / 2 + var(--pad))) 40px;
+  padding: 24px max(var(--pad), calc((100% - var(--max)) / 2 + var(--pad)));
   background: var(--bg);
   color: var(--ink);
   font-size: 14px;
