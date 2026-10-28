@@ -134,6 +134,13 @@ a:focus-visible {
   gap: 32px;
 }
 
+/* Material Symbols icons after the header links ("arrow_downward" for the resume, "arrow_outward" for the rest) */
+.site-header__nav svg {
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.22em;
+}
+
 /* ---------- Hero ---------- */
 
 .hero {
