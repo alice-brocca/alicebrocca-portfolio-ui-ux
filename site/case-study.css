@@ -6,8 +6,6 @@
   overflow-x: clip;
 }
 
-.case-page .site-header { position: absolute; }
-
 .cs {
   max-width: var(--max);
   margin: 0 auto;

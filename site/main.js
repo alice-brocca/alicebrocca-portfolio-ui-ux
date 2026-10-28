@@ -57,14 +57,10 @@
     arrow.el.style.opacity = a.toFixed(3);
   }
 
-  const header = document.querySelector('.site-header');
-
   function readScroll() {
     // Finish the collapse a little before the stage unpins, so A→B holds for a beat.
     const distance = Math.max(1, hero.offsetHeight - stage.offsetHeight);
     target = clamp(window.scrollY / (distance * 0.8), 0, 1);
-    // Header stays put while the hero is pinned, then scrolls away with it.
-    if (header) header.style.transform = `translateY(${-Math.max(0, window.scrollY - distance)}px)`;
   }
 
   function tick() {
@@ -497,6 +493,19 @@ document.querySelectorAll('.cs-arrows').forEach(group => {
     if (img && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); open(img); }
   });
   closeBtn.addEventListener('click', close);
+})();
+
+// Header: show the rule under it once the page is scrolled. On the home page
+// that waits until the name has collapsed and the hero lets go of the screen.
+(() => {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  const hero = document.querySelector('.hero');
+  const stage = hero && hero.querySelector('.hero__stage');
+  const start = () => (hero && stage ? hero.offsetHeight - stage.offsetHeight : 0);
+  const update = () => header.classList.toggle('is-scrolled', window.scrollY > start());
+  addEventListener('scroll', update, { passive: true });
+  update();
 })();
 
 // Back-to-top arrow
