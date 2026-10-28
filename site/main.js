@@ -194,18 +194,23 @@
   // Projects say "View Work"; case-study images (which open full screen) say "Zoom In".
   // In the enlarged-image viewer it says "Drag" (everywhere but the ✕ button,
   // since while dragging the events come from the viewer, not the picture).
+  // The footer email address says "Copy", then "Copied" once clicked.
   const ZOOMABLE = '.cs-figure img, .cs-carousel__track img';
   const update = target => {
     const el = target instanceof Element ? target : null;
     const project = !!(el && el.closest('.project'));
     const zoom = !project && !!(el && el.closest(ZOOMABLE));
     const drag = !!(el && el.closest('.lightbox.is-open') && !el.closest('.lightbox__close'));
-    cursor.classList.toggle('is-view', project || zoom || drag);
+    const copy = el && el.closest('.copy-email');
+    cursor.classList.toggle('is-view', project || zoom || drag || !!copy);
+    cursor.classList.toggle('is-light', !!copy);
     // Keep the last words while shrinking so they fade out rather than swap
     if (project) label.textContent = 'View Work';
     else if (zoom) label.textContent = 'Zoom In';
     else if (drag) label.textContent = 'Drag';
+    else if (copy) label.textContent = copy.classList.contains('is-copied') ? 'Copied' : 'Copy';
   };
+  document.addEventListener('email-copied', e => { if (e.target.matches(':hover')) update(e.target); });
 
   addEventListener('mousemove', e => {
     x = e.clientX; y = e.clientY;
@@ -223,6 +228,38 @@
   document.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));
   document.addEventListener('mouseenter', () => { if (seen) cursor.classList.add('is-visible'); });
 })();
+
+// Footer email address: clicking copies it to the clipboard instead of opening a
+// mail app, since the address is right there to read. The mouse cursor confirms
+// with "Copied"; for touch and keyboard the link text itself says so for a moment.
+// Without clipboard access the link stays an ordinary mailto.
+document.querySelectorAll('.copy-email').forEach(link => {
+  if (!navigator.clipboard) return;
+  const text = link.textContent;
+  const status = document.createElement('span');
+  status.setAttribute('role', 'status');
+  status.className = 'visually-hidden';
+  link.after(status);
+  let timer;
+
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    navigator.clipboard.writeText(link.dataset.copy).then(() => {
+      link.classList.add('is-copied');
+      status.textContent = 'Email address copied';
+      const showInText = e.detail === 0 || !document.documentElement.classList.contains('has-cursor');
+      if (showInText) link.textContent = 'EMAIL COPIED ✓';
+      link.dispatchEvent(new Event('email-copied', { bubbles: true }));
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        link.classList.remove('is-copied');
+        link.textContent = text;
+        status.textContent = '';
+        link.dispatchEvent(new Event('email-copied', { bubbles: true }));
+      }, 2000);
+    }, () => { location.href = link.href; });
+  });
+});
 
 // Image carousels loop: a copy of the slides sits on each side of the real
 // ones, and whenever scrolling settles inside a copy the track jumps (invisibly)
