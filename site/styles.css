@@ -380,7 +380,8 @@ a:focus-visible {
   line-height: 27px;
 }
 
-.site-footer__contact a { text-transform: uppercase; }
+/* Hug the text so the hover underline (and the click area) stop where the address ends */
+.site-footer__contact a { align-self: flex-start; text-transform: uppercase; }
 
 .site-footer__copy { text-align: center; }
 
