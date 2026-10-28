@@ -133,7 +133,7 @@
 }
 
 .cs-steps li {
-  padding: 32px 32px;
+  padding: 32px 0;
   border-bottom: 1px solid #a3a3a3;
 }
 
@@ -143,8 +143,6 @@
   line-height: 22px;
   margin-bottom: 24px;
 }
-
-.cs-steps p { max-width: 572px; }
 
 /* Partner flow breakdown: one wide image that scrolls sideways */
 
