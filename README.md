@@ -1,48 +1,41 @@
 # Alice Brocca — Portfolio
 
-A static site (plain HTML, CSS and JavaScript, no build step), hosted on Cloudflare Pages behind a password.
+A static site (plain HTML, CSS and JavaScript, no build step), published with GitHub Pages.
 
 ```
-site/          the website (index.html, the four case studies, styles, script, assets)
-functions/     the Cloudflare password check (_middleware.js)
+site/                        the website (index.html, the four case studies, styles, script, assets)
+.github/workflows/pages.yml  publishes site/ to GitHub Pages on every push to main
+functions/                   an optional password check, used only if the site moves to Cloudflare Pages
 ```
 
 ## 1. Push to GitHub
 
-1. On github.com, create a new repository. Make it **Private**, and leave it empty
-   (no README, no .gitignore, no license).
-2. Copy its URL (it looks like `https://github.com/YOUR-NAME/portfolio.git`).
-3. In Terminal, from this folder:
+1. On github.com, create a new repository. Make it **Public** (GitHub Pages needs a
+   public repository on a free account) and leave it empty (no README, .gitignore or
+   license).
+2. In Terminal, from this folder (use your own repository URL):
 
    ```bash
-   git remote add origin https://github.com/YOUR-NAME/portfolio.git
+   git remote add origin https://github.com/YOUR-NAME/REPO-NAME.git
    git push -u origin main
    ```
 
    When asked for a password, GitHub needs a **personal access token**, not your
    GitHub password: github.com → Settings → Developer settings → Personal access
-   tokens → Fine-grained tokens → Generate, give it access to this repository with
-   **Contents: Read and write**, and paste it at the prompt. macOS remembers it.
+   tokens → Fine-grained tokens → Generate. Give it access to this repository only,
+   with **Contents** and **Workflows** set to **Read and write**, and paste it at the
+   prompt. macOS remembers it.
 
-## 2. Publish on Cloudflare Pages
+## 2. Turn on GitHub Pages
 
-1. Sign in at dash.cloudflare.com → **Workers & Pages** → **Create** → **Pages** →
-   **Connect to Git**, and pick this repository.
-2. Build settings:
-   - Framework preset: **None**
-   - Build command: *(leave empty)*
-   - Build output directory: **`site`**
-3. Before (or right after) the first deploy, open the project → **Settings** →
-   **Variables and Secrets**, and add, for Production:
-   - `SITE_USER`: the username visitors will type (for example `guest`)
-   - `SITE_PASSWORD`: the password, added as a **Secret**
-4. Deploy (or **Retry deployment** after adding the variables, since they only
-   apply to new deploys).
+In the repository: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+Then open the **Actions** tab and re-run "Publish site" (or push again).
 
-Until both variables are set, the site shows "This site is not configured yet"
-instead of your work, so it is never public by accident.
+The site appears at `https://YOUR-NAME.github.io/REPO-NAME/`, or at
+`https://YOUR-NAME.github.io/` if the repository is named `YOUR-NAME.github.io`.
 
-To change the password later, edit `SITE_PASSWORD` and redeploy.
+GitHub Pages has no password protection: anyone with the link can see the site.
+The case-study pages carry `noindex` tags, which keep them out of search results.
 
 ## Updating the site
 
@@ -54,7 +47,7 @@ git commit -m "Describe the change"
 git push
 ```
 
-Cloudflare publishes each push automatically.
+The site updates about a minute after each push.
 
 ## Preview locally
 
@@ -62,4 +55,4 @@ Cloudflare publishes each push automatically.
 ruby -run -e httpd site -p 4321
 ```
 
-Then open http://localhost:4321. (The password check only runs on Cloudflare.)
+Then open http://localhost:4321.
