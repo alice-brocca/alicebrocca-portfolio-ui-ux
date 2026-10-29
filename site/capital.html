@@ -51,22 +51,22 @@
     <section class="cs-section">
       <h2 class="cs-label">Problem</h2>
       <div class="cs-section__body">
-        <p>The application process for Shift4’s merchant financing product, Capital (in partnership with a third party loan provider referred to as Partner Funding), lived entirely outside Shift4’s back office product. Merchants clicked “Apply Now” on the marketing landing page and were routed to Partner Funding’s own site to complete the application, creating a jarring handoff at the exact moment intent was highest. The drop-off data made the cost of that handoff clear: 33% of users abandoned at account creation with the third-party provider, the first thing they hit after leaving Shift4’s environment.</p>
+        <p>The application process for Shift4’s merchant financing product, Capital (in partnership with a third-party loan provider referred to as Loan Co.), lived entirely outside Shift4’s back office product. Merchants clicked “Apply Now” on the marketing landing page and were routed to Loan Co.’s own site to complete the application, creating a jarring handoff at the exact moment intent was highest. The drop-off data made the cost of that handoff clear: 33% of users abandoned at account creation with the third-party provider, the first thing they hit after leaving Shift4’s environment.</p>
         <p>Another 33% dropped across the business information form and bank-connection steps that followed. Two-thirds of qualified, interested merchants never reached a funded offer, and the friction had nothing to do with the offer itself. It was the experience of leaving a trusted, familiar product to hand personal and business data to an unfamiliar site.</p>
-        <p>Beyond those two drop-off points, the available data didn’t break down precisely what within each step caused users to abandon. So part of the design task was a direct audit of Partner Funding’s own flow. That review surfaced concrete shortcomings the numbers alone didn’t explain. Every shortcoming became a specific target for the redesign, rather than working from drop-off percentages alone.</p>
+        <p>Beyond those two drop-off points, the available data didn’t break down precisely what within each step caused users to abandon. So part of the design task was a direct audit of Loan Co.’s own flow. That review surfaced concrete shortcomings the numbers alone didn’t explain. Every shortcoming became a specific target for the redesign, rather than working from drop-off percentages alone.</p>
       </div>
     </section>
 
     <section class="cs-section cs-breakdown">
       <div class="cs-breakdown__head">
-        <h2 class="cs-label">Partner Financing Flow Breakdown</h2>
+        <h2 class="cs-label">Loan Co. Flow Breakdown</h2>
         <div class="cs-arrows" data-track="capital-breakdown">
           <button type="button" aria-label="Previous step" aria-controls="capital-breakdown"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 18l-6-6 6-6 1.4 1.4-4.6 4.6 4.6 4.6L14 18z"/></svg></button>
           <button type="button" aria-label="Next step" aria-controls="capital-breakdown"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.6 12L8 7.4 9.4 6l6 6-6 6L8 16.6l4.6-4.6z"/></svg></button>
         </div>
       </div>
-      <div class="cs-breakdown__track" id="capital-breakdown" tabindex="0" aria-label="Partner Financing flow, seven steps">
-        <img src="assets/images/capital/comp-slider.png" width="3091" height="816" alt="Seven steps of Partner Funding’s original application: tell us about your company, tell us about yourself, verify your bank account, review and submit, customize your offer, review and accept terms, and application status, each with notes on what worked and what didn’t">
+      <div class="cs-breakdown__track" id="capital-breakdown" tabindex="0" aria-label="Loan Co. flow, seven steps">
+        <img src="assets/images/capital/comp-slider.png" width="3091" height="816" alt="Seven steps of Loan Co.’s original application: tell us about your company, tell us about yourself, verify your bank account, review and submit, customize your offer, review and accept terms, and application status, each with notes on what worked and what didn’t">
       </div>
     </section>
 
@@ -97,7 +97,7 @@
         <ul class="cs-steps">
           <li>
             <h3>Confirm Business Details</h3>
-            <p>Pre-fills what Shift4 already knows, so merchants don’t re-enter it. Since sensitive questions can cause hesitation, I added context explaining why each detail is needed and that the soft credit check won’t affect their score and merchants never have to create a separate account with the lender.</p>
+            <p>Pre-fills what Shift4 already knows, so merchants don’t re-enter it. Since sensitive questions can cause hesitation, I added context explaining why each detail is needed and that the soft credit check won’t affect their score. Merchants also never have to create a separate account with the lender.</p>
           </li>
           <li>
             <h3>Connect Bank Accounts</h3>
@@ -105,7 +105,7 @@
           </li>
           <li>
             <h3>Customize Your Offer</h3>
-            <p>Merchants see right away that they’re prequalified. They can adjust the amount and watch fees and repayment rates update live across payment plans. I made the math visual and easy to follow, clarified that the payoff date is only an estimate with no late-payoff penalty, and added an FAQ.</p>
+            <p>Merchants see right away that they’re pre-qualified. They can adjust the amount and watch fees and repayment rates update live across payment plans. I made the math visual and easy to follow, clarified that the payoff date is only an estimate with no late-payoff penalty, and added an FAQ.</p>
           </li>
           <li>
             <h3>Review &amp; Accept Terms</h3>
@@ -134,8 +134,8 @@
       <div class="cs-section__body">
         <p class="tight">By moving the entire journey into Customer Hub and pre-populating known merchant data, the design directly targets both drop-off points identified in research:</p>
         <ul class="bullets">
-          <li>Eliminates the account-creation drop-off ensuring merchants never leave Shift4’s environment or create a separate YouLend login, addressing the 33% lost at that step</li>
-          <li>Reduces the business-info and bank-connection friction since business details are pre-filled from existing Shift4 data, and Plaid verification replaces manual document upload as the default path, targeting the second 33% drop-off</li>
+          <li>Eliminates the account-creation drop-off by ensuring merchants never leave Shift4’s environment or create a separate Loan Co. login, addressing the 33% lost at that step</li>
+          <li>Reduces the business-info and bank-connection friction, since business details are pre-filled from existing Shift4 data, and Plaid verification replaces manual document upload as the default path, targeting the second 33% drop-off</li>
           <li>Makes the offer tangible and interactive so that merchants can see and adjust their loan amount, fee, and repayment rate in real time, rather than receiving a static take-it-or-leave-it offer</li>
         </ul>
       </div>

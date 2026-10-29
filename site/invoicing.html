@@ -35,7 +35,7 @@
     <div class="cs-intro">
       <div class="cs-intro__desc">
         <h2 class="cs-label">Project Description</h2>
-        <p>This project’s goal was to design an end-to-end catering invoicing tool built into Shift4’s back office tool. It moves restaurants off disconnected systems and manual tracking into one workflow covering the full catering journey, from building an order off the real menu to scheduling deposits, firing the order to the kitchen, and handling payments, voids and refunds.</p>
+        <p>This project’s goal was to design an end-to-end catering invoicing tool built into Shift4’s back office. It moves restaurants off disconnected systems and manual tracking into one workflow covering the full catering journey, from building an order off the real menu to scheduling deposits, firing the order to the kitchen, and handling payments, voids and refunds.</p>
       </div>
       <dl class="cs-meta">
         <dt>Employer</dt><dd>Shift4</dd>
@@ -64,9 +64,9 @@
       <h2 class="cs-label">Research</h2>
       <div class="cs-section__body">
         <p>I analyzed the flows of four competitors: Square, Toast, Lightspeed and SpotOn.</p>
-        <p>Square: The fastest invoice creation, with payment schedules, cards on file, share links, and reminders. But a deposit couldn’t be refunded without canceling the whole invoice, and nothing was built for catering. Opportunity: match Square’s speed, and support deposit refunds without forcing a cancellation.</p>
+        <p>Square: The fastest invoice creation, with payment schedules, cards on file, share links, and reminders. But a deposit couldn’t be refunded without cancelling the whole invoice, and nothing was built for catering. Opportunity: match Square’s speed, and support deposit refunds without forcing a cancellation.</p>
         <p>Toast: The closest restaurant competitor, with very flexible payment schedules. In our testing, that flexibility created more potential for broken states. Opportunity: keep the flexibility, but make broken states impossible.</p>
-        <p>Lightspeed Retail: Simple and predictable. Only drafts could be deleted, and sent invoices could be edited or canceled until paid. Opportunity: borrow its clear status model and firm rules.</p>
+        <p>Lightspeed Retail: Simple and predictable. Only drafts could be deleted, and sent invoices could be edited or cancelled until paid. Opportunity: borrow its clear status model and firm rules.</p>
         <p>SpotOn: Strong defaults, including branding, due dates, and automatic reminders, plus a clean “Add Payment” flow for payments taken outside the invoice. Opportunity: set smart defaults, and make outside payments easy to record.</p>
         <p>Key insight: Competitors were either flexible but prone to broken states, or safe but rigid. Customers expect every payment for an event to live under one invoice number. On the back end, that meant a parent/child structure, with each payment linked to the parent invoice. Our goal was to keep Toast-level flexibility while making sure a sent invoice could never end up confusing or broken.</p>
       </div>
@@ -79,7 +79,7 @@
     <section class="cs-section">
       <h2 class="cs-label">Approach</h2>
       <div class="cs-section__body">
-        <p>This project was split into two phases. Phase 1 covered the invoicing basics for Customer Hub merchants that did not have Shift 4’s POS Workstation. Phase 1 gave merchants the ability to create, draft, send and search invoices, with tax settings and a stats landing page. Phase 2 took on the catering-specific problems for merchants that do have Shift4’s POS, and my research on competitors shaped how I handled them.</p>
+        <p>This project was split into two phases. Phase 1 covered the invoicing basics for Customer Hub merchants that did not have Shift4’s POS Workstation. Phase 1 gave merchants the ability to create, draft, send and search invoices, with tax settings and a stats landing page. Phase 2 took on the catering-specific problems for merchants that do have Shift4’s POS, and my research on competitors shaped how I handled them.</p>
         <p>The creation flow pairs the form with a live preview of what the customer will receive. Fulfillment timing and kitchen fire time replace a generic due date. Items are built from the POS menu, including modifiers. Payment schedules make deposits easy to set up, and the edit rules are locked in before the invoice is sent.</p>
         <p>Because sent invoices can’t be edited, every change after sending goes through voids and refunds. I designed five correction flows: item and full voids for unpaid invoices, and item, payment, custom-amount and full refunds for paid ones. They all share one pattern modelled on the POS. The operator gives a reason, picks what to reverse from an itemized list that includes modifiers, and confirms against a running total. Clear rules keep the ledger reconcilable.</p>
         <p>Every flow was designed for desktop, mobile and the POS web view.</p>
