@@ -57,7 +57,12 @@
     arrow.el.style.opacity = a.toFixed(3);
   }
 
+  // The tagline waits until the visitor starts scrolling, and hides again back at the top (styles.css)
+  const showTagline = () => hero.classList.toggle('is-resting', window.scrollY < 8);
+  showTagline();
+
   function readScroll() {
+    showTagline();
     // Finish the collapse a little before the stage unpins, so A→B holds for a beat.
     const distance = Math.max(1, hero.offsetHeight - stage.offsetHeight);
     target = clamp(window.scrollY / (distance * 0.8), 0, 1);
@@ -187,6 +192,7 @@
   const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
 
   // Set the state from whatever is under the pointer.
+  // The hero name says "Scroll", as a hint to start the collapse.
   // Projects say "View"; case-study images (which open full screen) say "Click",
   // or "Click/Drag" in a carousel, stacked on two lines to fit the circle.
   // While a carousel is being dragged it says "Drag"; in the enlarged-image
@@ -195,14 +201,16 @@
   const ZOOMABLE = '.cs-figure img, .cs-carousel__track img';
   const update = target => {
     const el = target instanceof Element ? target : null;
+    const scroll = !!(el && el.closest('.hero__name'));
     const project = !!(el && el.closest('.project'));
     const zoom = !project && !!(el && el.closest(ZOOMABLE));
     const drag = !!(el && el.closest('.cs-carousel__track.is-dragging'));
     const copy = el && el.closest('.copy-email');
-    cursor.classList.toggle('is-view', project || zoom || drag || !!copy);
+    cursor.classList.toggle('is-view', scroll || project || zoom || drag || !!copy);
     cursor.classList.toggle('is-light', !!copy);
     // Keep the last words while shrinking so they fade out rather than swap
-    if (project) label.textContent = 'View';
+    if (scroll) label.textContent = 'Scroll';
+    else if (project) label.textContent = 'View';
     else if (drag) label.textContent = 'Drag';
     else if (zoom) label.textContent = el.closest('.cs-carousel__track') ? 'Click/\nDrag' : 'Click';
     else if (copy) label.textContent = copy.classList.contains('is-copied') ? 'Copied' : 'Copy';
