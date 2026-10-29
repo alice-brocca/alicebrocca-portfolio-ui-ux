@@ -36,7 +36,7 @@
     arrow.el.style.width = '0px';
     name.style.fontSize = '100px';
     const full = name.scrollWidth;
-    const pad = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--pad')) || 60;
+    const pad = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--pad')) || 40;
     const avail = stage.clientWidth - pad * 2;
     const size = Math.min(MAX_SIZE, (100 * avail) / full);
     name.style.fontSize = size + 'px';

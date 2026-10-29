@@ -2,13 +2,11 @@
 
 .case-page {
   /* How far a bleeding slider reaches past the content edge to the window edge */
-  --bleed: max(var(--pad), calc((100vw - var(--max)) / 2 + var(--pad)));
+  --bleed: var(--pad);
   overflow-x: clip;
 }
 
 .cs {
-  max-width: var(--max);
-  margin: 0 auto;
   padding: 160px var(--pad) 100px;
   color: var(--black);
   font-family: var(--manrope);
