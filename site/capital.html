@@ -30,7 +30,7 @@
       <span>All Work</span>
     </a>
 
-    <h1 class="cs-title">// Capital Embedded Application</h1>
+    <h1 class="cs-title">Capital Embedded Application</h1>
 
     <div class="cs-intro">
       <div class="cs-intro__desc">
@@ -51,7 +51,7 @@
     <section class="cs-section">
       <h2 class="cs-label">Problem</h2>
       <div class="cs-section__body">
-        <p>The application process for Shift4’s merchant financing product, Capital (in partnership with a third-party loan provider referred to as Loan Co.), lived entirely outside Shift4’s back office product. Merchants clicked “Apply Now” on the marketing landing page and were routed to Loan Co.’s own site to complete the application, creating a jarring handoff at the exact moment intent was highest. The drop-off data made the cost of that handoff clear: 33% of users abandoned at account creation with the third-party provider, the first thing they hit after leaving Shift4’s environment.</p>
+        <p>The application process for Shift4’s merchant financing product, Capital (in partnership with a third-party loan provider referred to as Loan Co.), lived entirely outside Shift4’s back office. Merchants clicked “Apply Now” on the landing page and were routed to Loan Co.’s own site to complete the application, creating a jarring handoff at the exact moment intent was highest. The drop-off data made the cost of that handoff clear: 33% of users abandoned at account creation with the third-party provider, the first thing they hit after leaving Shift4’s environment.</p>
         <p>Another 33% dropped across the business information form and bank-connection steps that followed. Two-thirds of qualified, interested merchants never reached a funded offer, and the friction had nothing to do with the offer itself. It was the experience of leaving a trusted, familiar product to hand personal and business data to an unfamiliar site.</p>
         <p>Beyond those two drop-off points, the available data didn’t break down precisely what within each step caused users to abandon. So part of the design task was a direct audit of Loan Co.’s own flow. That review surfaced concrete shortcomings the numbers alone didn’t explain. Every shortcoming became a specific target for the redesign, rather than working from drop-off percentages alone.</p>
       </div>
@@ -73,7 +73,7 @@
     <section class="cs-section">
       <h2 class="cs-label">Research</h2>
       <div class="cs-section__body">
-        <p>Before designing anything, I ran a competitive analysis of embedded financing across Toast, Square, Clover, SpotOn, and Lightspeed. I used a research skill our team built in-house. Each competitor solved one piece of the problem and stumbled on another:</p>
+        <p>Before designing anything, I ran a competitive analysis of embedded financing across Toast, Square, Clover, SpotOn, and Lightspeed. I used a Claude research skill our team built in-house. Each competitor solved one piece of the problem and stumbled on another:</p>
         <ul class="bullets">
           <li>Toast Capital came closest, with automatic pre-qualification and a live offer customizer. But it gave no timeline between applying and approval.</li>
           <li>Square Loans buried a minimum-payment rule: if sales are slow, Square debits the shortfall straight from the merchant’s bank account.</li>
@@ -135,7 +135,7 @@
         <p class="tight">By moving the entire journey into Customer Hub and pre-populating known merchant data, the design directly targets both drop-off points identified in research:</p>
         <ul class="bullets">
           <li>Eliminates the account-creation drop-off by ensuring merchants never leave Shift4’s environment or create a separate Loan Co. login, addressing the 33% lost at that step</li>
-          <li>Reduces the business-info and bank-connection friction, since business details are pre-filled from existing Shift4 data, and Plaid verification replaces manual document upload as the default path, targeting the second 33% drop-off</li>
+          <li>Reduces the business-info and bank-connection friction by adding clarifying copy and an inline FAQ that address merchants’ trust concerns at the moment they’re deciding whether to link their account, targeting the second 33% drop-off.</li>
           <li>Makes the offer tangible and interactive so that merchants can see and adjust their loan amount, fee, and repayment rate in real time, rather than receiving a static take-it-or-leave-it offer</li>
         </ul>
       </div>

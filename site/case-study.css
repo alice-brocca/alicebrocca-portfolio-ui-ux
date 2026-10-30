@@ -28,6 +28,14 @@
 
 .cs p.tight + ul.bullets { margin-top: 0; }
 
+/* Bullets that open with a bold subheading, with the explanation on the line below */
+.cs ul.bullets--titled li + li { margin-top: 16px; }
+
+.cs ul.bullets--titled strong {
+  display: block;
+  font-weight: 600;
+}
+
 .cs-label {
   font-family: var(--manrope);
   font-weight: 600;

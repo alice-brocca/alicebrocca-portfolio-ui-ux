@@ -30,7 +30,7 @@
       <span>All Work</span>
     </a>
 
-    <h1 class="cs-title">// Invoicing</h1>
+    <h1 class="cs-title">Invoicing</h1>
 
     <div class="cs-intro">
       <div class="cs-intro__desc">
@@ -51,8 +51,8 @@
     <section class="cs-section">
       <h2 class="cs-label">Problem</h2>
       <div class="cs-section__body">
-        <p>Shift4 had no invoicing tool. That became a real gap when restaurants joining through an acquisition relied on invoicing to run their catering and large orders. Without it, they couldn’t migrate to Shift4 without losing a core part of how they got paid.</p>
-        <p>The hardest design problem was money that changes over time. One invoice might take a deposit, collect a second payment, void two trays of wraps, then issue a partial refund. Every state had to make sense to the operator, the customer, and the reporting behind it.</p>
+        <p>Shift4 had no invoicing tool. That became a real gap when merchants joining through acquisitions relied on invoicing to run their catering and large orders. Without it, they couldn’t migrate to Shift4 without losing a core part of how they got paid.</p>
+        <p>The hardest design problem was money that changes over time. One invoice might take a deposit, collect a second payment, void two trays of sandwich wraps, then issue a partial refund. Every state had to make sense to the operator, the customer, and the reporting behind it.</p>
       </div>
     </section>
 
@@ -63,12 +63,7 @@
     <section class="cs-section">
       <h2 class="cs-label">Research</h2>
       <div class="cs-section__body">
-        <p>I analyzed the flows of four competitors: Square, Toast, Lightspeed and SpotOn.</p>
-        <p>Square: The fastest invoice creation, with payment schedules, cards on file, share links, and reminders. But a deposit couldn’t be refunded without cancelling the whole invoice, and nothing was built for catering. Opportunity: match Square’s speed, and support deposit refunds without forcing a cancellation.</p>
-        <p>Toast: The closest restaurant competitor, with very flexible payment schedules. In our testing, that flexibility created more potential for broken states. Opportunity: keep the flexibility, but make broken states impossible.</p>
-        <p>Lightspeed Retail: Simple and predictable. Only drafts could be deleted, and sent invoices could be edited or cancelled until paid. Opportunity: borrow its clear status model and firm rules.</p>
-        <p>SpotOn: Strong defaults, including branding, due dates, and automatic reminders, plus a clean “Add Payment” flow for payments taken outside the invoice. Opportunity: set smart defaults, and make outside payments easy to record.</p>
-        <p>Key insight: Competitors were either flexible but prone to broken states, or safe but rigid. Customers expect every payment for an event to live under one invoice number. On the back end, that meant a parent/child structure, with each payment linked to the parent invoice. Our goal was to keep Toast-level flexibility while making sure a sent invoice could never end up confusing or broken.</p>
+        <p>I analyzed the flows of four competitors: Square, Toast, Lightspeed and SpotOn. These competitors were either flexible but prone to broken states, or safe but rigid. Customers expect every payment for an event to live under one invoice number. On the back end, that meant a parent/child structure, with each payment linked to the parent invoice. Our goal was to keep Toast-level flexibility while making sure a sent invoice could never end up confusing or broken.</p>
       </div>
     </section>
 
@@ -93,13 +88,13 @@
     <section class="cs-section">
       <h2 class="cs-label">Outcome</h2>
       <div class="cs-section__body">
-        <p>Invoicing is built directly into the tools restaurants already use, and made specific to catering. That lets the design address each problem identified in the briefs and competitor research:</p>
-        <ul class="bullets">
-          <li>Removes duplicate data entry. Customers and menu items come from the restaurant’s existing databases and sync with the POS, so operators stop rebuilding every order in a separate system.</li>
-          <li>Prevents the broken states seen in competitors. Sent invoices stay locked, and all corrections go through five void and refund flows with clear rules. This avoids the Toast problem where editing a sent invoice left merchants stuck with payments they couldn’t remove.</li>
-          <li>Makes deposits trustworthy for finance. Scheduled payments count as a liability until they’re redeemed, and each deposit links to its redemption through a unique ID. Owners can see outstanding deposits on each invoice instead of reconciling them by hand.</li>
-          <li>Connects invoices to the kitchen. Fulfillment timing, kitchen fire time and full modifier support mean the invoice the customer pays matches the order the kitchen prepares.</li>
-          <li>Keeps training close to zero. Item builders and refund screens mirror the POS patterns staff already use.</li>
+        <p>Invoicing is built directly into the tools merchants already use, and made specific to catering. That lets the design address each problem identified in the briefs and competitor research:</p>
+        <ul class="bullets bullets--titled">
+          <li><strong>Removes duplicate data entry</strong> Customers and menu items come from the restaurant’s existing databases and sync with the POS, so operators stop rebuilding every order in a separate system.</li>
+          <li><strong>Prevents the broken states seen in competitors</strong> Sent invoices stay locked, and all corrections go through five void and refund flows with clear rules. This avoids the Toast problem where editing a sent invoice left merchants stuck with payments they couldn’t remove.</li>
+          <li><strong>Makes deposits trustworthy for finance</strong> Scheduled payments count as a liability until they’re redeemed, and each deposit links to its redemption through a unique ID. Owners can see outstanding deposits on each invoice instead of reconciling them by hand.</li>
+          <li><strong>Connects invoices to the kitchen</strong> Fulfillment timing, kitchen fire time and full modifier support mean the invoice the customer pays matches the order the kitchen prepares.</li>
+          <li><strong>Keeps training close to zero</strong> Item builders and refund screens mirror the POS patterns staff already use.</li>
         </ul>
         <p>The project was cancelled before Phase 2 went into development, so these outcomes were never measured with real merchants. The prototype was ready to test against the KPIs defined up front: task success rate, time on task, and drop-off rate on complex flows like partial deposit refunds.</p>
       </div>
